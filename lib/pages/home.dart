@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Bloc Listener".toUpperCase(),
+          "Bloc Consumer".toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -25,8 +25,25 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocListener<Counter, int>(
+          BlocConsumer<Counter, int>(
             bloc: myCounter,
+            builder: (context, state) {
+              return Text(
+                "$state",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            },
+            buildWhen: (previous, current) {
+              if (current >= 10) {
+                return true;
+              } else {
+                return false;
+              }
+            },
             listener: (context, state) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -42,19 +59,6 @@ class HomePage extends StatelessWidget {
                 return false;
               }
             },
-            child: BlocBuilder<Counter, int>(
-              bloc: myCounter,
-              builder: (context, state) {
-                return Text(
-                  "$state",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              },
-            ),
           ),
           const SizedBox(
             height: 50,
