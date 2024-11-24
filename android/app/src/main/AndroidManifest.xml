@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="state_management_bloc"
+        android:label="Bloc"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
