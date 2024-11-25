@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'controllers/counter.dart';
-import 'pages/home.dart';
+import 'pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'center_widget.dart';
+import 'hijau.dart';
 
-class DataWidget extends StatelessWidget {
-  const DataWidget({
+class Kuning extends StatelessWidget {
+  const Kuning({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: 200,
+      margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.red[900],
+        color: Colors.yellow[600],
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const CenterWidget(),
+      child: const Hijau(),
     );
   }
 }
