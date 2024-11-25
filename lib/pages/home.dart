@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controllers/counter.dart';
+import 'data_widget.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-  final Counter myCounter = Counter();
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Counter myCounter = BlocProvider.of<Counter>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Bloc Consumer".toUpperCase(),
+          "Bloc Provider".toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -25,74 +26,47 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocConsumer<Counter, int>(
-            bloc: myCounter,
-            builder: (context, state) {
-              return Text(
-                "$state",
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                ),
-              );
-            },
-            buildWhen: (previous, current) {
-              if (current >= 10) {
-                return true;
-              } else {
-                return false;
-              }
-            },
-            listener: (context, state) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  duration: const Duration(seconds: 1),
-                  content: Text("Angka genap".toUpperCase()),
-                ),
-              );
-            },
-            listenWhen: (previous, current) {
-              if (current % 2 == 0) {
-                return true;
-              } else {
-                return false;
-              }
-            },
-          ),
-          const SizedBox(
-            height: 50,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: Colors.blue[900]),
-                onPressed: () {
-                  myCounter.decrement();
-                },
-                child: const Text(
-                  "-",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
+              Material(
+                color: Colors.blue[900],
+                borderRadius: BorderRadius.circular(20),
+                child: InkWell(
+                  onTap: () {
+                    myCounter.decrement();
+                  },
+                  borderRadius: BorderRadius.circular(20),
+                  child: const SizedBox(
+                    height: 100,
+                    width: 70,
+                    child: Center(
+                      child: Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
-              ElevatedButton(
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: Colors.blue[900]),
-                onPressed: () {
-                  myCounter.increment();
-                },
-                child: const Text(
-                  "+",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
+              const DataWidget(),
+              Material(
+                color: Colors.blue[900],
+                borderRadius: BorderRadius.circular(20),
+                child: InkWell(
+                  onTap: () {
+                    myCounter.increment();
+                  },
+                  borderRadius: BorderRadius.circular(20),
+                  child: const SizedBox(
+                    height: 100,
+                    width: 70,
+                    child: Center(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
