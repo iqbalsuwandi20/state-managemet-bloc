@@ -13,7 +13,7 @@ class OtherPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Bloc Provider Value 2".toUpperCase(),
+          "Bloc Access".toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,

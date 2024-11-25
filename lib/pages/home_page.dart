@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:state_management_bloc/pages/other_page.dart';
 
 import '../controllers/counter.dart';
 import 'merah.dart';
-import 'other.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Bloc Provider Value".toUpperCase(),
+          "Bloc Access".toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -70,14 +70,25 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // Global Access
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => BlocProvider.value(
-                value: counter,
-                child: const OtherPage(),
-              ),
+              builder: (context) => const OtherPage(),
             ),
           );
+
+          // Anonymous Route Access
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => BlocProvider.value(
+          //       value: counter,
+          //       child: const OtherPage(),
+          //     ),
+          //   ),
+          // );
+
+          // Named and Generated Route Access
+          // Navigator.of(context).pushNamed("/other");
         },
         backgroundColor: Colors.pink[500],
         child: const Icon(
