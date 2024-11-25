@@ -3,18 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../controllers/counter.dart';
 import 'merah.dart';
+import 'other.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Counter counter = BlocProvider.of<Counter>(context);
+    Counter counter = context.read<Counter>();
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Dependency Injection".toUpperCase(),
+          "Bloc Provider Value".toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -65,6 +66,23 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => BlocProvider.value(
+                value: counter,
+                child: const OtherPage(),
+              ),
+            ),
+          );
+        },
+        backgroundColor: Colors.pink[500],
+        child: const Icon(
+          Icons.arrow_forward_ios_outlined,
+          color: Colors.white,
         ),
       ),
     );

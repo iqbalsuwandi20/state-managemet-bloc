@@ -10,8 +10,9 @@ class TextData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Counter counter = BlocProvider.of<Counter>(context);
-    return BlocBuilder(
+    Counter counter = context.read<Counter>();
+
+    return BlocBuilder<Counter, int>(
       bloc: counter,
       builder: (context, state) => Text(
         "$state",
