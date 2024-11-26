@@ -1,45 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'app.dart';
 import 'controllers/counter.dart';
-import 'pages/home_page.dart';
-import 'routes/routes.dart';
+import 'controllers/theme.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final Counter counter = Counter();
-
-  final MyRoutes myRoutes = MyRoutes();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Global Access
-    return BlocProvider(
-      create: (context) => Counter(),
-      child: const MaterialApp(
-        home: HomePage(),
-        debugShowCheckedModeBanner: false,
-        // Named Route Access
-        // initialRoute: "/",
-        // routes: {
-        //   "/": (context) => BlocProvider.value(
-        //         value: counter,
-        //         child: const HomePage(),
-        //       ),
-        //   "/other": (context) => BlocProvider.value(
-        //         value: counter,
-        //         child: const OtherPage(),
-        //       ),
-        // },
-
-        // Generated Route Access
-        // onGenerateRoute: myRoutes.onRoute,
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CounterBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ThemeBloc(),
+        ),
+      ],
+      child: const App(),
     );
   }
 }

@@ -1,27 +1,9 @@
 import 'package:bloc/bloc.dart';
 
-class Counter extends Cubit<int> {
-  Counter({this.initialData = 0}) : super(initialData);
+class CounterBloc extends Cubit<int> {
+  CounterBloc() : super(0);
 
-  int initialData;
+  void add() => emit(state + 1);
 
-  void increment() => emit(state + 1);
-
-  void decrement() => emit(state - 1);
-
-  @override
-  void onChange(Change<int> change) {
-    super.onChange(change);
-
-    // ignore: avoid_print
-    print(change);
-  }
-
-  @override
-  void onError(Object error, StackTrace stackTrace) {
-    super.onError(error, stackTrace);
-
-    // ignore: avoid_print
-    print(error);
-  }
+  void remove() => emit(state - 1);
 }
