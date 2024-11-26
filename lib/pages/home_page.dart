@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Multi Bloc Provider".toUpperCase(),
+          "Multi Bloc Listener".toUpperCase(),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -25,13 +25,51 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocBuilder<CounterBloc, int>(
-            bloc: counterBloc,
-            builder: (context, state) => Text(
-              '$state',
-              style: const TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
+          MultiBlocListener(
+            listeners: [
+              BlocListener<ThemeBloc, bool>(
+                  listener: (context, state) =>
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Tema gelap aktif".toUpperCase(),
+                          ),
+                          duration: const Duration(seconds: 1),
+                        ),
+                      ),
+                  listenWhen: (previous, current) {
+                    if (current == false) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  }),
+              BlocListener<CounterBloc, int>(
+                  listener: (context, state) =>
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Lebih dari 5".toUpperCase(),
+                          ),
+                          duration: const Duration(seconds: 1),
+                        ),
+                      ),
+                  listenWhen: (previous, current) {
+                    if (current > 5) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  }),
+            ],
+            child: BlocBuilder<CounterBloc, int>(
+              bloc: counterBloc,
+              builder: (context, state) => Text(
+                '$state',
+                style: const TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
