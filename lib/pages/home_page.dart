@@ -7,14 +7,15 @@ import '../bloc/counter_event.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final CounterBloc counterBloc = CounterBloc(20);
+  final CounterBloc counterBloc = CounterBloc(0);
+  final int value = 10;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Obsever Bloc".toUpperCase(),
+          "Bloc class".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -38,11 +39,11 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  onPressed: () => counterBloc.add(CounterEvent.decrement),
+                  onPressed: () => counterBloc.add(DecrementCounter(value)),
                   icon: const Icon(Icons.remove, size: 50),
                 ),
                 IconButton(
-                  onPressed: () => counterBloc.add(CounterEvent.increment),
+                  onPressed: () => counterBloc.add(IncrementCounter(value)),
                   icon: const Icon(Icons.add, size: 50),
                 ),
               ],
