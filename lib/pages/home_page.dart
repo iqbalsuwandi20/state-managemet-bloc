@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Enum Class".toUpperCase(),
+          "Obsever Bloc".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
