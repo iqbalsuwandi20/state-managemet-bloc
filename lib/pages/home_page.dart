@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../controllers/counter_bloc.dart';
+import '../bloc/counter_bloc.dart';
+import '../bloc/counter_event.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final CounterBloc counterBloc = CounterBloc(20);
 
   @override
   Widget build(BuildContext context) {
-    print("build scaffold".toUpperCase());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Extension Method".toUpperCase(),
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          "Enum Class".toUpperCase(),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -23,35 +23,30 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Builder(
-              builder: (context) => Text(
-                "${context.watch<CounterBloc>().state}",
+            BlocBuilder<CounterBloc, int>(
+              bloc: counterBloc,
+              builder: (context, state) => Text(
+                "$state",
                 style: const TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  onPressed: () => context.read<CounterBloc>().remove(),
-                  icon: const Icon(
-                    Icons.remove,
-                    size: 50,
-                  ),
+                  onPressed: () => counterBloc.add(CounterEvent.decrement),
+                  icon: const Icon(Icons.remove, size: 50),
                 ),
                 IconButton(
-                  onPressed: () => context.read<CounterBloc>().add(),
-                  icon: const Icon(
-                    Icons.add,
-                    size: 50,
-                  ),
+                  onPressed: () => counterBloc.add(CounterEvent.increment),
+                  icon: const Icon(Icons.add, size: 50),
                 ),
               ],
-            ),
+            )
           ],
         ),
       ),
