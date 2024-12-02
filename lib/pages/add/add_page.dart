@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:state_management_bloc/models/user.dart';
 
 import '../../bloc/user/user_bloc.dart';
+import '../../models/user.dart';
 
 class AddPage extends StatelessWidget {
   AddPage({super.key});

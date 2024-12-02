@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add user".toUpperCase(),
+          "Delete User".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -46,7 +46,9 @@ class HomePage extends StatelessWidget {
                   title: Text(user.name),
                   subtitle: Text("${user.age} Years"),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      userBloc.add(DeleteUserEvent(user));
+                    },
                     icon: const Icon(Icons.delete),
                   ),
                 );
