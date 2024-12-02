@@ -1,10 +1,21 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:state_management_bloc/models/user.dart';
+
+import '../../bloc/user/user_bloc.dart';
 
 class AddPage extends StatelessWidget {
-  const AddPage({super.key});
+  AddPage({super.key});
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = context.read<UserBloc>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -16,26 +27,40 @@ class AddPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          const TextField(
+          TextField(
+            controller: nameController,
             autocorrect: false,
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: "Name",
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 10),
-          const TextField(
+          TextField(
+            controller: ageController,
             autocorrect: false,
+            keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: "Age",
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              userBloc.add(
+                AddUserEvent(
+                  User(
+                    id: Random().nextInt(9999999),
+                    name: nameController.text,
+                    age: int.parse(ageController.text),
+                  ),
+                ),
+              );
+              Navigator.pop(context);
+            },
             child: Text("Add User".toUpperCase()),
           ),
         ],

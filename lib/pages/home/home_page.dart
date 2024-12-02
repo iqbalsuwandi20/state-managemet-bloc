@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Initial State".toUpperCase(),
+          "Add user".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const AddPage(),
+            builder: (context) => AddPage(),
           ),
         ),
         child: const Icon(Icons.add),
