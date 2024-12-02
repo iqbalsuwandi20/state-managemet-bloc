@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Delete User".toUpperCase(),
+          "Edit User".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const EditPage(),
+                      builder: (context) => EditPage(user),
                     ),
                   ),
                   leading: CircleAvatar(
