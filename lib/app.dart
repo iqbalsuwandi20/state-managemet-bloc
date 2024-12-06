@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/user/user_bloc.dart';
-import 'pages/home/home_page.dart';
+import './logic/export.dart';
+import 'pages/home/home_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,7 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => UserBloc()),
+        BlocProvider(create: (context) => RandomBloc()),
       ],
       child: const Appview(),
     );
@@ -25,7 +24,7 @@ class Appview extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: HomeView(),
     );
   }
 }
