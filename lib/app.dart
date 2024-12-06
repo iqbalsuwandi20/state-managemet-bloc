@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 import './logic/export.dart';
+import 'data/repositories/home_repository.dart';
 import 'pages/home/home_view.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final HomeRepository homeRepository = HomeRepository();
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => RandomBloc()),
+        BlocProvider(create: (context) => RandomBloc(homeRepository)),
       ],
       child: const Appview(),
     );
