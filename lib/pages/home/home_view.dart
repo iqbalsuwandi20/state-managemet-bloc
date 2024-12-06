@@ -43,7 +43,7 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 20),
             const Text("Mie ayam enak banget"),
             const SizedBox(height: 5),
-            const Text("5 Porsi"),
+            const Text("30 Menit"),
             const SizedBox(height: 5),
             const Text("Tingkat kesulitan ( Rumit )"),
             const SizedBox(height: 20),
