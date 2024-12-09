@@ -27,14 +27,14 @@ class DataHomeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> dataJson = new Map<String, dynamic>();
-    dataJson['fullname'] = this.fullname;
-    dataJson['email'] = this.email;
-    dataJson['profile'] = this.profile;
-    dataJson['judul_masakan'] = this.judulMasakan;
-    dataJson['waktu'] = this.waktu;
-    dataJson['gambar_masakan'] = this.gambarMasakan;
-    dataJson['kesulitan'] = this.kesulitan;
+    final Map<String, dynamic> dataJson = <String, dynamic>{};
+    dataJson['fullname'] = fullname;
+    dataJson['email'] = email;
+    dataJson['profile'] = profile;
+    dataJson['judul_masakan'] = judulMasakan;
+    dataJson['waktu'] = waktu;
+    dataJson['gambar_masakan'] = gambarMasakan;
+    dataJson['kesulitan'] = kesulitan;
     return dataJson;
   }
 }

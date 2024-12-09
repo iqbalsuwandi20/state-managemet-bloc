@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:state_management_bloc/data/models/data_home.dart';
 
+import '../../data/models/data_home.dart';
 import '../../logic/export.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Presentation Layer".toUpperCase(),
+          "Error Handling".toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -28,7 +28,17 @@ class HomeView extends StatelessWidget {
           }
           if (state is RandomError) {
             return Center(
-              child: Text("Terjadi kesalahan!!!".toUpperCase()),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Terjadi kesalahan!!!".toUpperCase()),
+                  const SizedBox(height: 5),
+                  Text(
+                    state.error.toUpperCase(),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             );
           }
           if (state is RandomInitial) {

@@ -22,24 +22,24 @@ class UserModel {
     if (json['data'] != null) {
       data = <DataUser>[];
       json['data'].forEach((v) {
-        data!.add(new DataUser.fromJson(v));
+        data!.add(DataUser.fromJson(v));
       });
     }
     support =
-        json['support'] != null ? new Support.fromJson(json['support']) : null;
+        json['support'] != null ? Support.fromJson(json['support']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> dataJson = new Map<String, dynamic>();
-    dataJson['page'] = this.page;
-    dataJson['per_page'] = this.perPage;
-    dataJson['total'] = this.total;
-    dataJson['total_pages'] = this.totalPages;
-    if (this.data != null) {
-      dataJson['data'] = this.data!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> dataJson = <String, dynamic>{};
+    dataJson['page'] = page;
+    dataJson['per_page'] = perPage;
+    dataJson['total'] = total;
+    dataJson['total_pages'] = totalPages;
+    if (data != null) {
+      dataJson['data'] = data!.map((v) => v.toJson()).toList();
     }
-    if (this.support != null) {
-      dataJson['support'] = this.support!.toJson();
+    if (support != null) {
+      dataJson['support'] = support!.toJson();
     }
     return dataJson;
   }
@@ -63,12 +63,12 @@ class DataUser {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['avatar'] = this.avatar;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['email'] = email;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['avatar'] = avatar;
     return data;
   }
 }
@@ -85,9 +85,9 @@ class Support {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['text'] = this.text;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['text'] = text;
     return data;
   }
 }

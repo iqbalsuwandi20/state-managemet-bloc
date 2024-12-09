@@ -11,17 +11,17 @@ class MasakanModel {
     if (json['data'] != null) {
       data = <DataMasakan>[];
       json['data'].forEach((v) {
-        data!.add(new DataMasakan.fromJson(v));
+        data!.add(DataMasakan.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> dataJson = new Map<String, dynamic>();
-    dataJson['status'] = this.status;
-    dataJson['message'] = this.message;
-    if (this.data != null) {
-      dataJson['data'] = this.data!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> dataJson = <String, dynamic>{};
+    dataJson['status'] = status;
+    dataJson['message'] = message;
+    if (data != null) {
+      dataJson['data'] = data!.map((v) => v.toJson()).toList();
     }
     return dataJson;
   }
@@ -46,12 +46,12 @@ class DataMasakan {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['slug'] = this.slug;
-    data['title'] = this.title;
-    data['thumbnail'] = this.thumbnail;
-    data['duration'] = this.duration;
-    data['difficulty'] = this.difficulty;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['slug'] = slug;
+    data['title'] = title;
+    data['thumbnail'] = thumbnail;
+    data['duration'] = duration;
+    data['difficulty'] = difficulty;
     return data;
   }
 }

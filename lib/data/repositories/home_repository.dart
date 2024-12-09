@@ -14,11 +14,12 @@ class HomeRepository {
     Map<String, dynamic> dataUser = await userProvider.getDataUser();
     Map<String, dynamic> dataMakanan = await masakanProvider.getDataMakanan();
 
-    if (dataUser["error"] == true && dataMakanan["error"] == true) {
-      return {
-        "error": true,
-        "message": "Terjadi kesalahan saat mengambil data user & makanan",
-      };
+    if (dataUser['error'] == true) {
+      return dataUser;
+    }
+
+    if (dataMakanan['error'] == true) {
+      return dataMakanan;
     }
 
     UserModel userModel = dataUser["data"] as UserModel;

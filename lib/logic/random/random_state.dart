@@ -20,5 +20,7 @@ final class RandomCompleted extends RandomState {
 }
 
 final class RandomError extends RandomState {
-  const RandomError(super.data);
+  const RandomError(super.data, this.error);
+
+  final String error;
 }
